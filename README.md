@@ -1,70 +1,79 @@
-Como o Projeto Começou:
+# 🔐 App Login (Flutter)
 
-Configuração Inicial: O projeto foi iniciado no ambiente de desenvolvimento (utilizando o 
-editor de código e o navegador Google Chrome para testes rápidos).
+Aplicativo desenvolvido em **Flutter** para praticar a criação de interfaces de autenticação, formulários estilizados e navegação entre telas (`TelaLogin` e `TelaCadastroPerfil`).
 
-Criação da Tela de Login (TelaLogin):
+---
 
-Começamos estruturando o esqueleto visual básico da página.
+## 🚀 Como o Projeto Começou
 
-Centralizamos os elementos do formulário e aplicamos uma margem de segurança nas bordas.
+- **Configuração Inicial:** O projeto foi iniciado no ambiente de desenvolvimento utilizando o editor de código e o navegador Google Chrome para testes rápidos.
+- **Criação da Tela de Login (`TelaLogin`):**
+  - Estruturação do esqueleto visual básico da página.
+  - Centralização dos elementos do formulário com margem de segurança nas bordas.
+  - Adição de uma caixa centralizada contendo campos de texto (`TextField`) para e-mail e senha.
+- **Navegação entre Telas:**
+  - Criação da segunda tela (`TelaCadastroPerfil`) para simular o registro de novos usuários.
+  - Transformação do texto *"Criar Conta"* em um elemento interativo usando `GestureDetector`, com transição de telas via `Navigator.push` e retorno via `Navigator.pop`.
 
-Adicionamos uma caixa centralizada contendo campos de texto (TextField) para e-mail e senha.
+---
 
+## 🧩 Componentes do Flutter Utilizados
 
-Navegação entre Telas:
+- **`Scaffold`**: Esqueleto visual base da tela, fornecendo a estrutura padrão que sustenta a barra superior (`AppBar`) e o corpo (`body`).
+- **`AppBar`**: Barra de navegação superior usada para exibir o título da página e cores personalizadas.
+- **`Center`**: Componente de alinhamento que centraliza todo o conteúdo interno na tela.
+- **`Padding`**: Adiciona espaçamento interno (margens de segurança) para evitar que os elementos fiquem colados nas bordas do dispositivo.
+- **`Container`**: Caixa utilizada para estilização, permitindo definir cor de fundo branca, bordas arredondadas e efeitos de sombra no formulário de login.
+- **`Column`**: Empilha os elementos filhos verticalmente, organizando título, campos e botões.
+- **`SizedBox`**: Widget invisível com tamanho fixo usado para criar espaçamentos verticais entre os campos de texto.
+- **`Row`**: Alinha os elementos horizontalmente, usado no rodapé do formulário para separar *"Esqueci a senha"* e *"Criar Conta"*.
+- **`Expanded`**: Utilizado dentro da `Row` para distribuir o espaço disponível de forma proporcional.
 
-Criamos a segunda tela (TelaCadastroPerfil) para simular o registro de novos usuários.
+---
 
-Transformamos o texto "Criar Conta" em um elemento interativo usando o GestureDetector e 
-programamos a transição de telas com o Navigator.push e o Navigator.pop para o retorno.
+## 🛠️ Problemas Encontrados e Soluções
 
-Componentes do Flutter Utilizados 
+1. **Erro de Toolchain do Windows (Visual Studio)**
+   - **Problema:** Ao tentar rodar o aplicativo pela primeira vez, o terminal apresentou o erro `Error: Unable to find suitable Visual Studio toolchain`, pois o ambiente nativo de desktop do Windows exigia ferramentas de C++ que não estavam instaladas.
+   - **Solução:** Alteração da plataforma de execução para o **Google Chrome (Web)**, permitindo rodar e testar o app rapidamente no navegador.
 
-O código final emprega os principais blocos de construção do Flutter:
+2. **Erro de Sintaxe com `const` (Contexto de Navegação)**
+   - **Problema:** O compilador apontou erros em cima do `Navigator.push` e de variáveis dinâmicas de contexto.
+   - **Solução:** O Flutter não permite utilizar `const` em elementos que interagem dinamicamente com o `context`. Removemos o `const` do componente pai (`Expanded`) e mantivemos estático apenas o que era fixo.
 
-Scaffold: O esqueleto visual base da tela. Ele fornece a estrutura padrão que 
-sustenta a barra superior (AppBar) e o corpo (body) do aplicativo.
+3. **Fechamento Incorreto de Chaves e Colchetes**
+   - **Problema:** Faltou fechar algumas chaves no final do método `build` da tela de login, gerando erros estruturais.
+   - **Solução:** Organização da indentação linha por linha, fechando cada estrutura aninhada (`Row`, `Column`, `Container`, `Padding`, `Center`, `Scaffold` e `build`) na ordem inversa em que foram abertas.
 
-AppBar: A barra de navegação superior localizada no topo da tela, usada para 
-exibir o título da página e cores personalizadas.
+---
 
-Center: Um componente de alinhamento que força todo o seu conteúdo interno a 
-ficar perfeitamente centralizado na tela.
+## 📂 Estrutura do Projeto
 
-Padding: Adiciona espaçamento interno (margens de segurança) para evitar que 
-o s elementos fiquem colados nas bordas do dispositivo.
+```text
+app_login/
+├── lib/
+│   └── main.dart          # Telas de login, cadastro e navegação
+├── test/
+│   └── widget_test.dart   # Testes de widget
+└── pubspec.yaml           # Configurações e dependências do projeto
+```
 
-Container: Uma caixa versátil utilizada para estilização, permitindo definir cor de fundo branca, 
-bordas arredondadas e efeitos de sombra no formulário de login.
+---
 
-Column: Um componente de layout que empilha os elementos filhos verticalmente (de cima para baixo), 
-organizando o título, campos e botões em formato de coluna.
+## ▶️ Como Executar o Projeto
 
-SizedBox: Um widget invisível com tamanhos fixos, utilizado para 
-criar espaçamentos verticais organizados entre os campos de texto.
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/therryd/app_login.git](https://github.com/therryd/app_login.git)
+   cd app_login
+   ```
 
-Row: Um componente de layout que alinha os elementos horizontalmente (um ao lado do outro), 
-usado no rodapé do formulário para separar "Esqueci a senha" e "Criar Conta".
+2. **Instale as dependências:**
+   ```bash
+   flutter pub get
+   ```
 
-Expanded: Utilizado dentro de uma Row, ele faz com que os textos ocupem o 
-espaço disponível de forma inteligente e proporcional.
-
-
-
-Problemas Encontrados e Como Foram Resolvidos:
-
-Durante o desenvolvimento deste aplicativo em Flutter, 
-alguns desafios comuns de iniciante apareceram e foram solucionados da seguinte forma:
-
-1. Erro de Toolchain do Windows (Visual Studio):
-    Problema: Ao tentar rodar o aplicativo pela primeira vez, o terminal apresentou o erro `Error: Unable to find suitable Visual Studio toolchain`, pois o ambiente nativo de desktop do Windows exigia ferramentas de C++ que não estavam instaladas.
-    Como Resolvi: Mudamos a plataforma de execução no ambiente de desenvolvimento para o Google Chrome (Web), permitindo rodar e testar o app de forma rápida no navegador sem precisar instalar ferramentas pesadas de desktop.
-
-2. Erro de Sintaxe com a palavra `const` (Contexto de Navegação):
-   Problema: O compilador apontou erros em cima do `Navigator.push` e de variáveis dinâmicas de contexto.
-    Como Resolvi: Identificamos que o Flutter não permite utilizar a palavra `const` em elementos que mudam ou que interagem dinamicamente com o `context`. Removemos o `const` do componente pai (`Expanded`) e deixamos estático apenas o que era fixo, corrigindo o problema de compilação.
-
-3. Fechamento incorreto de chaves e colchetes:
-   Problema: Faltou fechar algumas chaves no final do método `build` da tela de login, gerando erros estruturais.
-    Como Resolvi: Organizamos a identação do código linha por linha, fechando corretamente cada estrutura aninhada (`Row`, `Column`, `Container`, `Padding`, `Center`, `Scaffold` e `build`) na ordem inversa em que foram abertas.
+3. **Execute o aplicativo (no Chrome ou emulador):**
+   ```bash
+   flutter run
+   ```
